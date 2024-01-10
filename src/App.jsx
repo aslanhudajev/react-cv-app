@@ -44,11 +44,19 @@ function App() {
     },
   ]);
 
+  const [isEducationFormVisible, setIsEducationFormVisible] = useState(false);
+  const [currentlyEditedEducationEntryId, setCurrentlyEditedEducationEntryId] =
+    useState(null);
+  const [showworkForm, setShowWorkForm] = useState(false);
+  let currentlyEditedWorkEntryId = null;
+
   function handlePersonalInfoChange(e) {
     const newPersonalInfo = { ...personalInfo };
     newPersonalInfo[e.target.dataset.key] = e.target.value;
     setPersonalInfo(newPersonalInfo);
   }
+
+  function handleEducationInfoChange(e) {}
 
   function addEducation() {
     const newEducationInfo = structuredClone(educationInfo);
@@ -62,7 +70,14 @@ function App() {
     setEducationInfo(newEducationInfo);
   }
 
-  function showEducationEditForm() {}
+  function showEducationEditForm(e) {
+    setCurrentlyEditedEducationEntryId(e.target.dataset.id);
+    setIsEducationFormVisible(true);
+  }
+
+  function showWorkEditForm(e) {
+    currentlyEditedWorkEntryId = e.target.dataset.id;
+  }
 
   function editEducation() {}
 
@@ -70,12 +85,15 @@ function App() {
     <>
       <section className="inputs">
         <PersonalDetails
-          personalInfo={personalInfo}
+          {...personalInfo}
           onChange={handlePersonalInfoChange}
         />
         <EducationDetails
           educationInfo={educationInfo}
+          isEducationFormVisible={isEducationFormVisible}
+          currentlyEditedEducationEntryId={currentlyEditedEducationEntryId}
           addEducation={addEducation}
+          showEducationEditForm={showEducationEditForm}
         />
       </section>
 
