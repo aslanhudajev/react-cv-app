@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 import CV from "./components/CVPreview/CV";
 import PersonalDetails from "./components/Inputs/PersonalDetails/PersonalDetails";
@@ -20,12 +21,14 @@ function App() {
       degree: "PHD. Theoretical Physics",
       from: "09/1999",
       to: "04/2004",
+      id: uuid(),
     },
     {
-      university: "Standform",
+      university: "Stanford",
       degree: "BSC. Computer Science",
       from: "09/1996",
       to: "04/1999",
+      id: uuid(),
     },
   ]);
 
@@ -37,6 +40,7 @@ function App() {
       from: "04/2004",
       to: "current",
       desc: "Reasearch scientist researching the border world Xen",
+      id: uuid(),
     },
   ]);
 
@@ -46,6 +50,22 @@ function App() {
     setPersonalInfo(newPersonalInfo);
   }
 
+  function addEducation() {
+    const newEducationInfo = structuredClone(educationInfo);
+    newEducationInfo.push({
+      university: "University",
+      degree: "",
+      from: "",
+      to: "",
+      id: uuid(),
+    });
+    setEducationInfo(newEducationInfo);
+  }
+
+  function showEducationEditForm() {}
+
+  function editEducation() {}
+
   return (
     <>
       <section className="inputs">
@@ -53,11 +73,14 @@ function App() {
           personalInfo={personalInfo}
           onChange={handlePersonalInfoChange}
         />
-        <EducationDetails educationInfo={educationInfo} />
+        <EducationDetails
+          educationInfo={educationInfo}
+          addEducation={addEducation}
+        />
       </section>
 
       <section className="cv-preview">
-        <CV personalInfo={personalInfo} />
+        <CV personalInfo={personalInfo} educationInfo={educationInfo} />
       </section>
     </>
   );

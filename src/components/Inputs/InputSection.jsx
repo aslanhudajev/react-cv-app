@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function InputSection({ title, children }) {
   return (
     <section className="input-sect">

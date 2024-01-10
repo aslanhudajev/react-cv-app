@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 function InputGroup({ label, type, dataKey, value, onChange }) {
   return (
     <>

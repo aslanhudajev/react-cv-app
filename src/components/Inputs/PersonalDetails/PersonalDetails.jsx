@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import InputSection from "../InputSection";
 import InputGroup from "../InputGroup";
 
