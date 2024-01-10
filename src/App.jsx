@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+
+import CV from "./components/CVPreview/CV";
+import PersonalDetails from "./components/Inputs/PersonalDetails/PersonalDetails";
+import EducationDetails from "./components/Inputs/EducationDetails/EducationDetails";
+
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [personalInfo, setPersonalInfo] = useState({
+    fullName: "Gordon Freeman",
+    email: "gordon.freeman@blackmesa.gov",
+    tel: "+123456789",
+    address: "4765 Xen Lane",
+  });
+
+  const [educationInfo, setEducationInfo] = useState([
+    {
+      university: "MIT",
+      degree: "PHD. Theoretical Physics",
+      from: "09/1999",
+      to: "04/2004",
+    },
+    {
+      university: "Standform",
+      degree: "BSC. Computer Science",
+      from: "09/1996",
+      to: "04/1999",
+    },
+  ]);
+
+  const [workInfo, setWorkInfo] = useState([
+    {
+      company: "Black Mesa Research",
+      position: "Scientist",
+      location: "New Mexico",
+      from: "04/2004",
+      to: "current",
+      desc: "Reasearch scientist researching the border world Xen",
+    },
+  ]);
+
+  function handlePersonalInfoChange(e) {
+    const newPersonalInfo = { ...personalInfo };
+    newPersonalInfo[e.target.dataset.key] = e.target.value;
+    setPersonalInfo(newPersonalInfo);
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <section className="inputs">
+        <PersonalDetails
+          personalInfo={personalInfo}
+          onChange={handlePersonalInfoChange}
+        />
+        <EducationDetails educationInfo={educationInfo} />
+      </section>
+
+      <section className="cv-preview">
+        <CV personalInfo={personalInfo} />
+      </section>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
