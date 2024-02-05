@@ -17,7 +17,7 @@ h2 {
 
 #root {
   display: grid;
-  grid-template-columns: 500px 1fr;
+  grid-template-columns: 700px 1fr;
   width: 100vw;
   height: 100vh;
 }
@@ -64,7 +64,7 @@ h2 {
 }
 
 #inputs {
-  padding: 20px;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
