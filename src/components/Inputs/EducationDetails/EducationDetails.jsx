@@ -10,6 +10,7 @@ function EducationDetails({
   addEducation,
   showEducationEditForm,
   hideEducationEditForm,
+  deleteEducation,
   onChange,
 }) {
   if (!isEducationFormVisible) {
@@ -22,6 +23,7 @@ function EducationDetails({
               id={education.id}
               key={education.id}
               showEducationEditForm={showEducationEditForm}
+              deleteEducation={deleteEducation}
             />
           );
         })}

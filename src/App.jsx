@@ -4,6 +4,7 @@ import { v4 as uuid } from "uuid";
 import CV from "./components/CVPreview/CV";
 import PersonalDetails from "./components/Inputs/PersonalDetails/PersonalDetails";
 import EducationDetails from "./components/Inputs/EducationDetails/EducationDetails";
+import WorkDetails from "./components/Inputs/WorkDetails/WordDetails";
 
 import "./App.css";
 
@@ -48,8 +49,9 @@ function App() {
   const [currentlyEditedEducationEntryId, setCurrentlyEditedEducationEntryId] =
     useState(null);
 
-  const [showworkForm, setShowWorkForm] = useState(false);
-  let currentlyEditedWorkEntryId = null;
+  const [isWorkFormVisible, setIsWorkFormVisible] = useState(false);
+  const [currentlyEditedWorkEntryId, setCurrentlyEditedWorkEntryId] =
+    useState(null);
 
   function handlePersonalInfoChange(e) {
     const newPersonalInfo = { ...personalInfo };
@@ -66,6 +68,15 @@ function App() {
     setEducationInfo(newEducationInfo);
   }
 
+  function handleWorkInfoChange(e) {
+    const newWorkInfo = structuredClone(workInfo);
+    let infoChanged = newWorkInfo.find(
+      (work) => work.id === currentlyEditedWorkEntryId
+    );
+    infoChanged[e.target.dataset.key] = e.target.value;
+    setWorkInfo(newWorkInfo);
+  }
+
   function addEducation() {
     const newEducationInfo = structuredClone(educationInfo);
     newEducationInfo.push({
@@ -76,6 +87,34 @@ function App() {
       id: uuid(),
     });
     setEducationInfo(newEducationInfo);
+  }
+
+  function deleteEducation(e) {
+    const newEducationInfo = structuredClone(educationInfo).filter(
+      (education) => education.id !== e.target.dataset.id
+    );
+    setEducationInfo(newEducationInfo);
+  }
+
+  function addWork() {
+    const newWorkInfo = structuredClone(workInfo);
+    newWorkInfo.push({
+      company: "Acme",
+      position: "",
+      location: "",
+      from: "",
+      to: "",
+      desc: "",
+      id: uuid(),
+    });
+    setWorkInfo(newWorkInfo);
+  }
+
+  function deleteWork(e) {
+    const newWorkInfo = structuredClone(workInfo).filter(
+      (work) => work.id !== e.target.dataset.id
+    );
+    setWorkInfo(newWorkInfo);
   }
 
   function showEducationEditForm(e) {
@@ -89,10 +128,14 @@ function App() {
   }
 
   function showWorkEditForm(e) {
-    currentlyEditedWorkEntryId = e.target.dataset.id;
+    setCurrentlyEditedWorkEntryId(e.target.dataset.id);
+    setIsWorkFormVisible(true);
   }
 
-  function hideWorkEditForm() {}
+  function hideWorkEditForm() {
+    setCurrentlyEditedWorkEntryId(null);
+    setIsWorkFormVisible(false);
+  }
 
   return (
     <>
@@ -106,14 +149,29 @@ function App() {
           isEducationFormVisible={isEducationFormVisible}
           currentlyEditedEducationEntryId={currentlyEditedEducationEntryId}
           addEducation={addEducation}
+          deleteEducation={deleteEducation}
           showEducationEditForm={showEducationEditForm}
           hideEducationEditForm={hideEducationEditForm}
           onChange={handleEducationInfoChange}
         />
+        <WorkDetails
+          workInfo={workInfo}
+          isWorkFormVisible={isWorkFormVisible}
+          currentlyEditedWorkEntryId={currentlyEditedWorkEntryId}
+          addWork={addWork}
+          showWorkEditForm={showWorkEditForm}
+          hideWorkEditForm={hideWorkEditForm}
+          deleteWork={deleteWork}
+          onChange={handleWorkInfoChange}
+        />
       </section>
 
       <section className="cv-preview">
-        <CV personalInfo={personalInfo} educationInfo={educationInfo} />
+        <CV
+          personalInfo={personalInfo}
+          educationInfo={educationInfo}
+          workInfo={workInfo}
+        />
       </section>
     </>
   );
