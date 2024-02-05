@@ -47,6 +47,7 @@ function App() {
   const [isEducationFormVisible, setIsEducationFormVisible] = useState(false);
   const [currentlyEditedEducationEntryId, setCurrentlyEditedEducationEntryId] =
     useState(null);
+
   const [showworkForm, setShowWorkForm] = useState(false);
   let currentlyEditedWorkEntryId = null;
 
@@ -56,7 +57,14 @@ function App() {
     setPersonalInfo(newPersonalInfo);
   }
 
-  function handleEducationInfoChange(e) {}
+  function handleEducationInfoChange(e) {
+    const newEducationInfo = structuredClone(educationInfo);
+    let infoChanged = newEducationInfo.find(
+      (education) => education.id === currentlyEditedEducationEntryId
+    );
+    infoChanged[e.target.dataset.key] = e.target.value;
+    setEducationInfo(newEducationInfo);
+  }
 
   function addEducation() {
     const newEducationInfo = structuredClone(educationInfo);
@@ -75,11 +83,16 @@ function App() {
     setIsEducationFormVisible(true);
   }
 
+  function hideEducationEditForm(e) {
+    setCurrentlyEditedEducationEntryId(null);
+    setIsEducationFormVisible(false);
+  }
+
   function showWorkEditForm(e) {
     currentlyEditedWorkEntryId = e.target.dataset.id;
   }
 
-  function editEducation() {}
+  function hideWorkEditForm() {}
 
   return (
     <>
@@ -94,6 +107,8 @@ function App() {
           currentlyEditedEducationEntryId={currentlyEditedEducationEntryId}
           addEducation={addEducation}
           showEducationEditForm={showEducationEditForm}
+          hideEducationEditForm={hideEducationEditForm}
+          onChange={handleEducationInfoChange}
         />
       </section>
 

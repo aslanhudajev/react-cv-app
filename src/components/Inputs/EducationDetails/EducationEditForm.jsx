@@ -1,10 +1,17 @@
 /* eslint-disable react/prop-types */
 import InputGroup from "../InputGroup";
 
-function EducationEditForm({ university, degree, from, to, onChange }) {
+function EducationEditForm({
+  university,
+  degree,
+  from,
+  to,
+  hideEducationEditForm,
+  onChange,
+}) {
   return (
     <>
-      <form action={(e) => e.preventDefault()}>
+      <form action="submit">
         <InputGroup
           label="University"
           type="text"
@@ -33,6 +40,14 @@ function EducationEditForm({ university, degree, from, to, onChange }) {
           value={to}
           onChange={onChange}
         />
+
+        <button
+          className="btn hide"
+          type="button"
+          onClick={hideEducationEditForm}
+        >
+          Close
+        </button>
       </form>
     </>
   );

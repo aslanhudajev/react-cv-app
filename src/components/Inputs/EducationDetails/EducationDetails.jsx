@@ -9,6 +9,8 @@ function EducationDetails({
   currentlyEditedEducationEntryId,
   addEducation,
   showEducationEditForm,
+  hideEducationEditForm,
+  onChange,
 }) {
   if (!isEducationFormVisible) {
     return (
@@ -35,7 +37,11 @@ function EducationDetails({
     );
     return (
       <InputSection title={currentlyEditedEducationEntry.university}>
-        <EducationEditForm {...currentlyEditedEducationEntry} />
+        <EducationEditForm
+          hideEducationEditForm={hideEducationEditForm}
+          onChange={onChange}
+          {...currentlyEditedEducationEntry}
+        />
       </InputSection>
     );
   }
