@@ -8,13 +8,15 @@ import WorkDetailsCV from "./WorkDetailsCV/WordDetailsCV";
 function CV({ personalInfo, educationInfo, workInfo }) {
   return (
     <>
-      <PersonalDetailsCV {...personalInfo} />
-      <DisplaySection title="Education">
-        <EducationDetailsCV educationInfo={educationInfo} />
-      </DisplaySection>
-      <DisplaySection title="Work">
-        <WorkDetailsCV workInfo={workInfo} />
-      </DisplaySection>
+      <div id="cv-preview-inner">
+        <PersonalDetailsCV {...personalInfo} />
+        <DisplaySection title="Education">
+          <EducationDetailsCV educationInfo={educationInfo} />
+        </DisplaySection>
+        <DisplaySection title="Work">
+          <WorkDetailsCV workInfo={workInfo} />
+        </DisplaySection>
+      </div>
     </>
   );
 }

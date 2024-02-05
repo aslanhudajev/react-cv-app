@@ -1,14 +1,105 @@
+@root {
+  font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+span {
+  margin: 0;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: grid;
+  grid-template-columns: 500px 1fr;
+  width: 100vw;
+  height: 100vh;
+}
+
+#cv-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#cv-preview-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+#det-personal-details {
   display: flex;
   flex-direction: row;
-  column-gap: 50px;
+  gap: 20px;
+}
+
+#det-name {
+  text-align: center;
+}
+
+.cv-display-sect-title {
+  margin-bottom: 10px;
+}
+
+.exp-entry {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.entry-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#inputs {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
 }
 
 .input-sect-form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.edu-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.work-entry {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.entry-controls {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: left;
 }

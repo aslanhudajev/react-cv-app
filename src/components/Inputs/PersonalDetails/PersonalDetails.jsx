@@ -4,7 +4,7 @@ import InputGroup from "../InputGroup";
 
 function PersonalDetails({ fullName, email, tel, address, onChange }) {
   return (
-    <InputSection title="Peronal details">
+    <InputSection title="Personal details">
       <InputGroup
         label="Full name"
         type="text"

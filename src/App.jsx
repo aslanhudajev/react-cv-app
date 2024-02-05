@@ -122,7 +122,7 @@ function App() {
     setIsEducationFormVisible(true);
   }
 
-  function hideEducationEditForm(e) {
+  function hideEducationEditForm() {
     setCurrentlyEditedEducationEntryId(null);
     setIsEducationFormVisible(false);
   }
@@ -139,7 +139,7 @@ function App() {
 
   return (
     <>
-      <section className="inputs">
+      <section id="inputs">
         <PersonalDetails
           {...personalInfo}
           onChange={handlePersonalInfoChange}
@@ -166,7 +166,7 @@ function App() {
         />
       </section>
 
-      <section className="cv-preview">
+      <section id="cv-preview">
         <CV
           personalInfo={personalInfo}
           educationInfo={educationInfo}

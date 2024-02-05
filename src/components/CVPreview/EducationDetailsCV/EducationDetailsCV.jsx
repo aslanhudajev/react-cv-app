@@ -4,14 +4,14 @@ function EducationDetailsCV({ educationInfo }) {
     <>
       {educationInfo.map((education) => {
         return (
-          <div key={education.id}>
-            <div>
-              <span className="exp-fromto">
+          <div key={education.id} className="exp-entry">
+            <div className="entry-main">
+              <h3 className="entry-place">{education.university}</h3>
+              <span className="entry-fromto">
                 {education.from} - {education.to}
               </span>
             </div>
             <div>
-              <h3 className="exp-place">{education.university}</h3>
               <span className="exp-title">{education.degree}</span>
             </div>
           </div>
